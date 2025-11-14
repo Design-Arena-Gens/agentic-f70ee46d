@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --background: radial-gradient(circle at top left, #1f2937, #030712 55%, #000000);
+  --foreground: #f8fafc;
+  --card: rgba(15, 23, 42, 0.35);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --accent: #8a68ff;
+  --accent-secondary: #00f5d4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(138, 104, 255, 0.7), rgba(0, 245, 212, 0.7));
+  border-radius: 9999px;
+}
+
+.glass-sheen {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass-sheen::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.25), transparent 40%, rgba(255, 255, 255, 0.2));
+  filter: blur(0.5px);
+  z-index: -1;
+}
+
+.animate-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.8) 30%, transparent);
+}
+
+.gradient-orb {
+  position: absolute;
+  width: clamp(180px, 22vw, 280px);
+  height: clamp(180px, 22vw, 280px);
+  background: radial-gradient(circle at 30% 30%, rgba(138, 104, 255, 0.9), rgba(138, 104, 255, 0));
+  filter: blur(20px);
+  opacity: 0.6;
+  animation: float 16s ease-in-out infinite;
+}
+
+.gradient-orb.orb-2 {
+  background: radial-gradient(circle at 70% 70%, rgba(0, 245, 212, 0.8), rgba(0, 245, 212, 0));
+  animation-delay: -4s;
+}
+
+.gradient-orb.orb-3 {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 110, 199, 0.8), rgba(255, 110, 199, 0));
+  animation-delay: -8s;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NkYGD4DwABcgF9Tx5bNwAAAABJRU5ErkJggg==");
+  opacity: 0.15;
+  mix-blend-mode: soft-light;
+  z-index: 5;
+}
+
+.glass-blur {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
